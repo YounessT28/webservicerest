@@ -15,15 +15,17 @@ public class HelloService {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Response postMsg(String username){
-        if(username.equals("youness")){
+    @Consumes(MediaType.APPLICATION_JSON)
+    public User postMsg(User user){
+        if(user.getUsername().equals("youness")){
             User person = new User("youness", "password", "admin");
-            return Response.status(200).entity(person).build();
+            return person;
         }
         else
         {
+            User person = new User();
             String output = "Erreur";
-            return Response.status(200).entity(output).build();
+            return person;
         }
 
     }
